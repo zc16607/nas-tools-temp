@@ -23,7 +23,7 @@ jobs:
         git clone --depth=1 -b master https://github.com/hsuyelin/nas-tools --recurse-submodule
         cd nas-tools
         pip install -r package/requirements.txt
-        echo ("NASTOOL_CONFIG=D:/a/nas-tools/nas-tools/nas-tools/config/config.yaml") >> $env:GITHUB_ENV
+        echo ("NASTOOL_CONFIG=D:/a/nas-tools-temp/nas-tools-temp/nas-tools-temp/config/config.yaml") >> $env:GITHUB_ENV
         echo $env:NASTOOL_CONFIG
       shell: pwsh
 
@@ -42,14 +42,14 @@ jobs:
         xcopy .\scripts c:\hostedtoolcache\windows\python\3.10.11\x64\lib\site-packages\scripts\ /e
         cd package
         pyinstaller nas-tools.spec
-        dir  D:/a/nas-tools/nas-tools/nas-tools/package/dist
+        dir  D:/a/nas-tools-temp/nas-tools-temp/nas-tools-temp/package/dist
       shell: pwsh
 
     - name: Upload windows file
       uses: actions/upload-artifact@v3
       with:
         name: windows
-        path: D:/a/nas-tools/nas-tools/nas-tools/package/dist/nas-tools.exe
+        path: D:/a/nas-tools-temp/nas-tools-temp/nas-tools-temp/package/dist/nas-tools.exe
 
   Linux-build-amd64:
     runs-on: ubuntu-latest
